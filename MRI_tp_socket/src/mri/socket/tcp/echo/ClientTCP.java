@@ -17,11 +17,11 @@ public class ClientTCP {
     	try {
     		socket = new Socket("localhost", 9999);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Pas de serveur lancé");
+			System.exit(0);
+			//e.printStackTrace();
 		}
         //créer reader et writer associés
 		BufferedReader reader = null;
@@ -40,6 +40,7 @@ public class ClientTCP {
         //Tant que le mot «fin» n’est pas lu sur le clavier,
 		String msg = "";
 		while(!msg.equals("fin")){
+			//System.err.println(msg);
 			try {
 				msg = lireMessageAuClavier();
 			} catch (IOException e) {
@@ -47,6 +48,9 @@ public class ClientTCP {
 				e.printStackTrace();
 			}
 		}
+		
+		System.out.println("fin");
+
 		
         //Lire un message au clavier
 		 //envoyer le message au serveur
